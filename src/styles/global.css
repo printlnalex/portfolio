@@ -13,6 +13,11 @@
   --maxw: 1080px;
 }
 
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+}
+
 *{ box-sizing: border-box; }
 html, body { height: 100%; }
 body{
@@ -106,6 +111,15 @@ a { color: inherit; }
   border: 0;
   border-top: 1px solid var(--border);
   margin: 22px 0;
+}
+
+.card{
+  transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+.card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(139,147,255,.40);
+  box-shadow: 0 14px 45px rgba(0,0,0,.45);
 }
 
 @media (min-width: 1200px){
