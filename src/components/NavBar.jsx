@@ -1,43 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 
-const linkStyle = ({ isActive }) => ({
-  textDecoration: "none",
-  padding: "8px 12px",
-  borderRadius: 8,
-  fontWeight: 600,
-  opacity: isActive ? 1 : 0.75,
-});
+const navLinkClass = ({ isActive }) =>
+  "btn" + (isActive ? " btnPrimary" : "");
 
 export default function NavBar() {
   return (
-    <header style={{ borderBottom: "1px solid #e5e7eb" }}>
-      <nav
-        style={{
-          maxWidth: 1000,
-          margin: "0 auto",
-          padding: "16px 24px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-        }}
-      >
-        <Link to="/" style={{ textDecoration: "none", fontWeight: 800 }}>
-          Ales Lucatero
+    <header style={{ borderBottom: "1px solid var(--border)", background: "rgba(11,15,20,.55)", backdropFilter: "blur(10px)" }}>
+      <div className="container" style={{ paddingTop: 14, paddingBottom: 14, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14 }}>
+        <Link to="/" style={{ textDecoration: "none", fontWeight: 900, letterSpacing: "-0.02em" }}>
+          Ales<span style={{ color: "var(--accent)" }}>.</span>
         </Link>
 
-        <div style={{ display: "flex", gap: 8 }}>
-          <NavLink to="/projects" style={linkStyle}>
-            Projects
-          </NavLink>
-          <NavLink to="/resume" style={linkStyle}>
-            Resume
-          </NavLink>
-          <NavLink to="/contact" style={linkStyle}>
-            Contact
-          </NavLink>
-        </div>
-      </nav>
+        <nav style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <NavLink to="/projects" className={navLinkClass}>Projects</NavLink>
+          <NavLink to="/resume" className={navLinkClass}>Resume</NavLink>
+          <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+        </nav>
+      </div>
     </header>
   );
 }

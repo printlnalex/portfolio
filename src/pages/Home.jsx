@@ -2,55 +2,38 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <section>
-      <h1 style={{ fontSize: 40, marginBottom: 8 }}>Product + Data Portfolio</h1>
-      <p style={{ fontSize: 18, lineHeight: 1.6, maxWidth: 800 }}>
-        I build data-driven dashboards, analysis notebooks, and product case studies.
-        Skills: SQL, Python, Power BI/Tableau, Azure, and analytics storytelling.
-      </p>
+    <div className="container">
+      <section className="card">
+        <div className="cardInner" style={{ padding: 26 }}>
+          <p className="pill" style={{ display: "inline-flex", margin: 0 }}>
+            Product • Data • BI
+          </p>
 
-      <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
-        <Link
-          to="/projects"
-          style={{
-            padding: "10px 14px",
-            border: "1px solid #111827",
-            borderRadius: 10,
-            textDecoration: "none",
-            fontWeight: 700,
-          }}
-        >
-          View Projects
-        </Link>
+          <h1 className="h1" style={{ marginTop: 14 }}>
+            Modern analytics + product work,
+            <span style={{ color: "var(--accent)" }}> packaged as proof.</span>
+          </h1>
 
-        <a
-          href="https://github.com/printlnalex"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            padding: "10px 14px",
-            border: "1px solid #e5e7eb",
-            borderRadius: 10,
-            textDecoration: "none",
-          }}
-        >
-          GitHub
-        </a>
+          <p className="p" style={{ maxWidth: 820, marginTop: 12 }}>
+            I build dashboards, SQL analysis packs, and product case studies that turn messy data into clear decisions.
+            Tools: SQL, Python, Power BI/Tableau, Azure, Excel, React.
+          </p>
 
-        <a
-          href="https://linkedin.com/in/alexis-lucatero"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            padding: "10px 14px",
-            border: "1px solid #e5e7eb",
-            borderRadius: 10,
-            textDecoration: "none",
-          }}
-        >
-          LinkedIn
-        </a>
-      </div>
-    </section>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
+            <Link to="/projects" className="btn btnPrimary">View Projects</Link>
+            <a className="btn" href="https://github.com/printlnalex" target="_blank" rel="noreferrer">GitHub</a>
+            <a className="btn" href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+
+          <hr className="hr" />
+
+          <div className="pillRow">
+            {["SQL", "Python", "Power BI", "Azure", "Excel", "React", "Firebase"].map((s) => (
+              <span className="pill" key={s}>{s}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,0 +1,109 @@
+:root{
+  --bg: #0b0f14;          /* matte near-black */
+  --panel: #111827;       /* slate panel */
+  --panel2:#0f172a;       /* deeper panel */
+  --text: #e5e7eb;        /* soft white */
+  --muted:#9ca3af;        /* gray text */
+  --border:#1f2937;       /* subtle border */
+  --accent:#8b93ff;       /* muted periwinkle accent */
+  --accent2:#2dd4bf;      /* optional secondary accent */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+  --radius2: 12px;
+  --maxw: 1080px;
+}
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 700px at 20% -10%, rgba(139,147,255,.18), transparent 55%),
+              radial-gradient(900px 600px at 95% 10%, rgba(45,212,191,.12), transparent 55%),
+              var(--bg);
+  color: var(--text);
+}
+
+a { color: inherit; }
+.container{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(17,24,39,.85), rgba(15,23,42,.75));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.cardInner{
+  padding: 18px;
+}
+
+.pillRow{
+  display:flex; gap:10px; flex-wrap: wrap;
+}
+
+.pill{
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.h1{
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.h2{
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.p{
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  text-decoration:none;
+  background: rgba(255,255,255,.03);
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(139,147,255,.35);
+}
+.btnPrimary{
+  background: rgba(139,147,255,.14);
+  border-color: rgba(139,147,255,.35);
+}
+.btnPrimary:hover{
+  background: rgba(139,147,255,.20);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.hr{
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
