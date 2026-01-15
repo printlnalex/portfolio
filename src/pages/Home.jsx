@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="container">
-      <section className="card">
+      <section className="card" style={{ minHeight: "60vh", display: "flex", alignItems: "center" }}>
         <div className="cardInner" style={{ padding: 26 }}>
           <p className="pill" style={{ display: "inline-flex", margin: 0 }}>
             Product • Data • BI
