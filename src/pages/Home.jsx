@@ -21,8 +21,8 @@ export default function Home() {
           </p>
 
           <h1 className="h1" style={{ marginTop: 14 }}>
-            Modern analytics + product work,
-            <span style={{ color: "var(--accent)" }}> packaged as proof.</span>
+            Alexis Lucatero
+            <span style={{ color: "var(--accent)" }}> Data Analyst </span>
           </h1>
 
           <p className="p" style={{ maxWidth: 820, marginTop: 12 }}>
