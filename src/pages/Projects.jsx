@@ -3,103 +3,44 @@ import { projects } from "../data/projects";
 
 export default function Projects() {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        padding: "40px 0",
-      }}
-    >
-      {/* Header section */}
-      <div className="container">
-        <h1 className="h2">Projects</h1>
-        <p className="p" style={{ marginTop: 8, maxWidth: 700 }}>
-          Each project includes a case study + links to code or dashboards.
-        </p>
-      </div>
+    <div style={{ padding: "4rem 24px", maxWidth: 780, margin: "0 auto" }}>
+      <div className="sectionLabel">All projects</div>
+      <h1 className="h2" style={{ marginBottom: "0.5rem" }}>Work</h1>
+      <p className="p" style={{ marginBottom: "3rem" }}>
+        Real products, academic work, and everything in between.
+      </p>
 
-      {/* Full-width project grid */}
-      <div
-        style={{
-          width: "100%",
-          marginTop: 24,
-          padding: "0 5vw",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "1400px",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-            gap: 20,
-          }}
-        >
-          {projects.map((p) => (
-            <article key={p.slug} className="card">
-              <div className="cardInner">
-                {/* Project cover (placeholder gradient) */}
-                <div
-                  style={{
-                    height: 160,
-                    borderRadius: 14,
-                    marginBottom: 12,
-                    border: "1px solid var(--border)",
-                    background:
-                      p.cover === "sql"
-                        ? "linear-gradient(135deg, rgba(139,147,255,.22), rgba(17,24,39,.9))"
-                        : p.cover === "bi"
-                        ? "linear-gradient(135deg, rgba(45,212,191,.20), rgba(15,23,42,.9))"
-                        : "linear-gradient(135deg, rgba(255,255,255,.05), rgba(15,23,42,.85))",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "flex-end",
-                    padding: 14,
-                  }}
-                >
-                  <div style={{ fontWeight: 800, letterSpacing: "-0.01em" }}>
-                    {p.title}
-                  </div>
-                  <div style={{ color: "var(--muted)", fontSize: 12, marginTop: 4 }}>
-                    {p.tools.slice(0, 3).join(" • ")}
-                  </div>
-                </div>
-
-                <h2 style={{ margin: 0, fontSize: 18 }}>{p.title}</h2>
-                <p className="p" style={{ marginTop: 8 }}>
-                  {p.oneLiner}
-                </p>
-
-                <div className="pillRow" style={{ marginTop: 10 }}>
-                  {p.tools.map((t) => (
-                    <span className="pill" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                  <Link className="btn btnPrimary" to={`/projects/${p.slug}`}>
-                    Case Study
-                  </Link>
-
-                  {p.github && (
-                    <a className="btn" href={p.github} target="_blank" rel="noreferrer">
-                      GitHub
-                    </a>
-                  )}
-
-                  {p.dashboard && (
-                    <a className="btn" href={p.dashboard} target="_blank" rel="noreferrer">
-                      Dashboard
-                    </a>
-                  )}
-                </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 12, overflow: "hidden" }}>
+        {projects.map((p, i) => (
+          <Link
+            key={p.slug}
+            to={`/projects/${p.slug}`}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto 1fr auto",
+              gap: "1.5rem",
+              alignItems: "start",
+              padding: "1.75rem 2rem",
+              background: "#fafaf8",
+              textDecoration: "none",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = "#f2f1ed"}
+            onMouseLeave={e => e.currentTarget.style.background = "#fafaf8"}
+          >
+            <span style={{ fontSize: 12, color: "#a0a0a0", fontWeight: 500, paddingTop: 3, minWidth: 24 }}>
+              0{i + 1}
+            </span>
+            <div>
+              <div style={{ fontSize: 17, fontWeight: 500, marginBottom: 4, letterSpacing: "-0.2px" }}>{p.title}</div>
+              <div style={{ fontSize: 14, color: "#5a5a5a", lineHeight: 1.6, marginBottom: 10 }}>{p.oneLiner}</div>
+              <div className="pillRow">
+                {p.tools.map(t => <span className="pill" key={t}>{t}</span>)}
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+            <span style={{ color: "#a0a0a0", fontSize: 16, paddingTop: 3 }}>↗</span>
+          </Link>
+        ))}
       </div>
     </div>
   );

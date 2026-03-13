@@ -10,7 +10,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <main style={{ maxWidth: 1000, margin: "0 auto", padding: "24px" }}>
+      <main style={{}}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
