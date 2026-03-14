@@ -6,27 +6,47 @@ export default function Resume() {
           <div
             style={{
               display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "space-between",
-              gap: 12,
+              alignItems: "center",
+              gap: "1.5rem",
               flexWrap: "wrap",
-              marginBottom: 12,
+              marginBottom: "1.5rem",
+              paddingBottom: "1.5rem",
+              borderBottom: "1px solid var(--line)",
             }}
           >
-            <div>
-              <h1 className="h2">Resume</h1>
-              <p className="p" style={{ marginTop: 6 }}>
-                View or download my resume as a PDF.
-              </p>
-            </div>
-
-            <a
-              href="/Ales_Lucatero_Resume.pdf"
-              download
-              className="btn btnPrimary"
+            <div
+              style={{
+                width: 96,
+                height: 96,
+                borderRadius: 12,
+                overflow: "hidden",
+                flexShrink: 0,
+                border: "1px solid var(--line)",
+              }}
             >
-              Download PDF
-            </a>
+              <img
+                src="/images/ales.png"
+                alt="Ales Lucatero"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+            <div style={{ flex: 1, minWidth: 200 }}>
+              <h1 className="h2" style={{ marginBottom: 4 }}>Ales Lucatero</h1>
+              <p className="p" style={{ marginTop: 0, marginBottom: 8 }}>
+                Founder · Builder · UW Informatics 2026
+              </p>
+              <a
+                href="/Ales_Lucatero_Resume.pdf"
+                download
+                className="btn btnPrimary"
+              >
+                Download PDF
+              </a>
+            </div>
           </div>
 
           <div

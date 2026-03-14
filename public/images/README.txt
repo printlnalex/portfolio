@@ -1,0 +1,1 @@
+Drop your images here. Filenames: ales.png (headshot), fixflow.jpg, fieldalpha-app.jpg, fieldalpha-hero.jpg (Projects hero), fix-flow-thumb.jpg, imow-devops-thumb.jpg, jinx-thumb.jpg, imow-dashboard.jpg, imow-messaging.jpg, secureco-scene.jpg, secureco-branch.jpg, ml-model.jpg, ml-features.jpg
