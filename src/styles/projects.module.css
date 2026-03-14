@@ -38,10 +38,17 @@
   font-size: 15px;
   color: #5a5a5a;
   line-height: 1.8;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-/* Filter pills */
+/* Card grid — large story cards */
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Filter pills (kept for potential future use) */
 .filterRow {
   display: flex;
   gap: 8px;
@@ -164,28 +171,31 @@
 
 .storyCard {
   display: block;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #fafaf8;
-  padding: 1.75rem;
+  overflow: hidden;
   text-decoration: none;
-  transition: background 0.15s, border-color 0.15s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.15s;
 }
 
 .storyCard:hover {
-  background: #f2f1ed;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
   border-color: rgba(0, 0, 0, 0.12);
 }
 
 .storyCardImage {
-  aspect-ratio: 16/9;
-  border-radius: 8px;
+  aspect-ratio: 21/9;
   background: #f0efea;
-  margin-bottom: 1.25rem;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.storyCardContent {
+  padding: 2rem 2.25rem;
 }
 
 .storyCardImage img {
@@ -196,7 +206,7 @@
 
 .storyCardTitle {
   font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 1.25rem;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
   line-height: 1.2;
   letter-spacing: -0.3px;
   margin-bottom: 0.5rem;

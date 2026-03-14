@@ -1,302 +1,256 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import styles from "../styles/home.module.css";
 
 export default function Home() {
-  const [activeCompany, setActiveCompany] = useState(null);
-  const [activeJourney, setActiveJourney] = useState(null);
-
-  const toggleCompany = (id) => {
-    setActiveCompany((prev) => (prev === id ? null : id));
-  };
-
-  const toggleJourney = (id) => {
-    setActiveJourney((prev) => (prev === id ? null : id));
-  };
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add(styles.on);
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    document
+      .querySelectorAll(
+        `.${styles.reveal}, .${styles.revealLeft}, .${styles.revealRight}`
+      )
+      .forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <div style={{ background: "#fafaf8", minHeight: "100vh" }}>
-      <section
-        className="section"
-        style={{
-          paddingTop: "6rem",
-          paddingBottom: "4rem",
-          borderBottom: "1px solid rgba(0,0,0,0.07)",
-        }}
-      >
-        <p className="hero-eyebrow">Founder · Builder · UW Informatics 2026</p>
-        <h1 className="serif hero-name">
-          Ales
-          <br />
-          <em>builds things</em>
-        </h1>
-        <p className="hero-bio">
-          I write code that runs real businesses. Currently operating two
-          companies and finishing my degree at UW — building in the spaces where
-          software hasn't caught up yet.
-        </p>
-        <div className="hero-row">
-          <span className="status-badge">
-            <span className="pulse"></span>Open to opportunities
-          </span>
+    <>
+      {/* NAV */}
+      <nav className={styles.nav}>
+        <div className={styles.navInner}>
+          <a href="#hero" className={styles.navLogo}>Ales</a>
+          <div className={styles.navLinks}>
+            <a href="#fieldalpha" className={styles.navLink}>FieldAlpha</a>
+            <a href="#fixflow" className={styles.navLink}>Fix Flow</a>
+            <a href="#jinx" className={styles.navLink}>Jinx</a>
+            <a href="#origin" className={styles.navLink}>Story</a>
+            <a href="#contact" className={styles.navLink}>Contact</a>
+          </div>
+          <a href="#contact" className={styles.navCta}>Get in touch</a>
         </div>
-        <div className="hero-row">
-          <Link to="/projects" className="btn btn-primary">
-            View projects ↓
-          </Link>
-          <Link to="/contact" className="btn">
-            Contact me
-          </Link>
-          <a
-            href="https://github.com/printlnalex"
-            className="btn"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub ↗
-          </a>
-        </div>
-      </section>
+      </nav>
 
-      <div className="divider"></div>
-
-      <section className="section">
-        <div className="section-label">About me</div>
-        <div className="about-grid">
-          <div className="photo-slot">
+      {/* HERO */}
+      <section className={styles.hero} id="hero">
+        <div className={styles.heroOrbital}>
+          <div className={styles.orbitRing}></div>
+          <div className={styles.orbitRing2}></div>
+          <div className={styles.heroPhoto}>
             <img
               src="/images/ales.png"
               alt="Ales"
-              onError={(e) => (e.target.style.display = "none")}
+              onError={(e) => {
+                e.target.style.display = "none";
+                e.target.parentNode.innerHTML = '<div class="' + styles.heroPhotoFallback + '">A</div>';
+              }}
             />
           </div>
-          <div className="about-text">
-            <h2 className="serif">
-              Founder who codes,
-              <br />
-              <em>developer who ships</em>
-            </h2>
-            <p>
-              I started building software because I saw real operational gaps in
-              my own appliance repair business — and decided to fix them myself
-              instead of waiting for someone else to.
-            </p>
-            <p>
-              That turned into FieldAlpha, an AI-powered SaaS now used by live
-              technicians. I build across the full stack: Next.js, Supabase,
-              TypeScript, AI integrations — and I care deeply about things that
-              actually work in production.
-            </p>
-            <p>
-              I'm driven by the gap between what software <em>could</em> do for
-              small businesses and what's currently available to them.
-            </p>
-            <div className="goal-strip">
-              <div className="goal-label">My goal</div>
-              <div className="goal-text">
-                Full-stack developer who brings ideas to life — building products
-                that solve real problems at real scale.
+          <div className={`${styles.orbitNode} ${styles.nodeTop} ${styles.d1}`}>
+            <div className={styles.orbitNodeInner}>
+              <span className={styles.orbitNodeLabel}>Status</span>
+              <span className={styles.orbitNodeVal}>Open to work</span>
+            </div>
+          </div>
+          <div className={`${styles.orbitNode} ${styles.nodeRight} ${styles.d2}`}>
+            <div className={styles.orbitNodeInner}>
+              <span className={styles.orbitNodeLabel}>Role</span>
+              <span className={styles.orbitNodeVal}>Full-stack dev</span>
+            </div>
+          </div>
+          <div className={`${styles.orbitNode} ${styles.nodeBr} ${styles.d3}`}>
+            <div className={styles.orbitNodeInner}>
+              <span className={styles.orbitNodeLabel}>Companies</span>
+              <span className={styles.orbitNodeVal}>2 co-founded</span>
+            </div>
+          </div>
+          <div className={`${styles.orbitNode} ${styles.nodeBl} ${styles.d4}`}>
+            <div className={styles.orbitNodeInner}>
+              <span className={styles.orbitNodeLabel}>Location</span>
+              <span className={styles.orbitNodeVal}>Seattle, WA</span>
+            </div>
+          </div>
+          <div className={`${styles.orbitNode} ${styles.nodeLeft} ${styles.d5}`}>
+            <div className={styles.orbitNodeInner}>
+              <span className={styles.orbitNodeLabel}>Studying</span>
+              <span className={styles.orbitNodeVal}>UW Info '26</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.heroText}>
+          <div className={styles.statusBadge}>
+            <span className={styles.pulseDot}></span>
+            Available for opportunities
+          </div>
+          <p className={styles.heroEyebrow}>Co-founder · Builder · Developer</p>
+          <h1 className={styles.heroName}>
+            I build things<br />that <em>run</em> businesses.
+          </h1>
+          <p className={styles.heroBio}>
+            Not just code — real products used by real people, solving real problems
+            I found by doing the work myself. From door-to-door sales at 18 to
+            running two companies and building the software that powers them.
+          </p>
+          <div className={styles.heroCta}>
+            <a href="#fieldalpha" className={`${styles.btn} ${styles.btnPrimary}`}>Read the story ↓</a>
+            <a href="https://fieldalpha.dev" className={styles.btn} target="_blank" rel="noreferrer">FieldAlpha ↗</a>
+            <a href="https://github.com/printlnalex" className={styles.btn} target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div className={styles.heroScrollHint}>
+          <div className={styles.scrollLine}></div>
+          scroll
+        </div>
+      </section>
+
+      {/* MARQUEE */}
+      <div className={styles.marqueeWrap}>
+        <div className={styles.marqueeTrack}>
+          {["Next.js","Supabase","TypeScript","Gemini AI","Twilio","Claude API","React","Python","PostgreSQL","Tailwind","D2D Sales","B2B","Music Production",
+            "Next.js","Supabase","TypeScript","Gemini AI","Twilio","Claude API","React","Python","PostgreSQL","Tailwind","D2D Sales","B2B","Music Production"].map((item, i) => (
+            <span key={i} className={styles.mi}>{item}<span className={styles.ms}> · </span></span>
+          ))}
+        </div>
+      </div>
+
+      {/* CH1: FIELDALPHA */}
+      <section className={`${styles.chapter} ${styles.chapterDark}`} id="fieldalpha">
+        <div className={styles.chapterInner}>
+          <div className={`${styles.chapterLabel} ${styles.reveal}`}>Chapter 01 — The SaaS</div>
+          <div className={styles.storyGrid}>
+            <div className={styles.revealLeft}>
+              <div className={styles.storyEyebrow}>
+                <span className={`${styles.eyDot} ${styles.dotFa}`}></span>
+                Co-founded · 2023–present · Live
+              </div>
+              <h2 className={styles.storyTitle}>
+                FieldAlpha —<br /><em>born from chaos</em>
+              </h2>
+              <div className={styles.storyBody}>
+                <p>Running an appliance repair business means scheduling chaos, missed jobs, and technicians calling at 7am with no idea where to go. No software actually solved this for small operators.</p>
+                <p>So I co-founded FieldAlpha and built it from scratch. AI-powered job intake using Gemini, real-time dispatch, invoicing, customer management, SMS via Twilio — every feature was earned by experiencing the problem first.</p>
+                <p>Multi-tenant architecture, row-level security, live technicians using it in production today.</p>
+              </div>
+              <div className={styles.tags}>
+                {["Next.js","Supabase","TypeScript","Gemini AI","Twilio","SendGrid","RLS","Vercel"].map(t => (
+                  <span key={t} className={styles.tag}>{t}</span>
+                ))}
+              </div>
+              <div className={styles.storyLinks}>
+                <a href="https://fieldalpha.dev" className={`${styles.btn} ${styles.btnPrimary}`} target="_blank" rel="noreferrer">Visit fieldalpha.dev ↗</a>
+                <a href="#" className={`${styles.btn} ${styles.btnGhost}`}>Case study →</a>
               </div>
             </div>
+            <div className={styles.revealRight}>
+              <div className={`${styles.visFrame} ${styles.visFrameDark}`}>
+                <div className={styles.visPlaceholder}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.18)" strokeWidth="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                  <div className={styles.visPlaceholderLabel}>App screenshot<br/><span>public/images/fa-hero.jpg</span></div>
+                </div>
+                <div className={styles.visBadge}>
+                  <div className={styles.visBadgeNum}>Live</div>
+                  <div className={styles.visBadgeLabel}>Production users today</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.gallery} ${styles.g3} ${styles.reveal}`}>
+            {["Dashboard · public/images/fa-dashboard.jpg","Dispatch · public/images/fa-dispatch.jpg","Calendar · public/images/fa-calendar.jpg"].map((h,i) => (
+              <div key={i} className={`${styles.gCell} ${styles.gCellDark}`}><div className={styles.gHintDark}>{h.split(" · ")[0]}<br/><span>{h.split(" · ")[1]}</span></div></div>
+            ))}
+          </div>
+          <div className={`${styles.impact} ${styles.impactDark} ${styles.reveal}`}>
+            {[["AI","Gemini job intake"],["RT","Real-time dispatch"],["Multi","Tenant architecture"]].map(([n,l]) => (
+              <div key={n} className={`${styles.impactBox} ${styles.impactBoxDark}`}>
+                <div className={styles.iNum}>{n}</div>
+                <div className={styles.iLabel}>{l}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="divider"></div>
-
-      <section className="section">
-        <div className="section-label">My companies</div>
-        <p
-          style={{
-            fontSize: "15px",
-            color: "#5a5a5a",
-            marginBottom: "2rem",
-            lineHeight: 1.8,
-          }}
-        >
-          I don't just build for others — I run two businesses. This is where my
-          software gets battle-tested against real operational constraints.
-        </p>
-
-        <div className="company-grid">
-          <div
-            className={`company-card ${activeCompany === "ff" ? "active" : ""}`}
-            onClick={() => toggleCompany("ff")}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && toggleCompany("ff")}
-          >
-            <div className="company-num">Company 01</div>
-            <div className="serif company-name">
-              Fix Flow
-              <br />
-              Appliance
-            </div>
-            <div className="company-tag">Operations · Field Service</div>
-            <div className="company-desc">
-              Appliance repair company I founded and operate — managing
-              technicians, field operations, and customer experience day to day.
-            </div>
-          </div>
-          <div
-            className={`company-card ${activeCompany === "fa" ? "active" : ""}`}
-            onClick={() => toggleCompany("fa")}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && toggleCompany("fa")}
-          >
-            <div className="company-num">Company 02</div>
-            <div className="serif company-name">FieldAlpha</div>
-            <div className="company-tag">SaaS · AI · Field Ops</div>
-            <div className="company-desc">
-              AI-powered field service management software built from scratch to
-              solve the exact problems I face running Fix Flow.
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`company-detail ${activeCompany === "ff" ? "open" : ""}`}
-        >
-          <div className="detail-inner">
-            <div>
-              <div className="detail-img-slot">
-                <img
-                  src="/images/fixflow.jpg"
-                  alt="Fix Flow"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "10px",
-                  }}
-                  onError={(e) => (e.target.style.display = "none")}
-                />
+      {/* CH2: FIX FLOW */}
+      <section className={`${styles.chapter} ${styles.chapterWarm}`} id="fixflow">
+        <div className={styles.chapterInner}>
+          <div className={`${styles.chapterLabel} ${styles.reveal}`}>Chapter 02 — The Business</div>
+          <div className={`${styles.storyGrid} ${styles.storyGridFlip}`}>
+            <div className={styles.revealRight}>
+              <div className={styles.storyEyebrow}>
+                <span className={`${styles.eyDot} ${styles.dotFf}`}></span>
+                Co-founded · Co-run · Field operations
               </div>
-              <div className="impact-row" style={{ marginTop: "1rem" }}>
-                <div className="impact-box">
-                  <div className="impact-num serif">3+</div>
-                  <div className="impact-label">Technicians managed</div>
+              <h2 className={styles.storyTitle}>
+                Fix Flow —<br /><em>where it started</em>
+              </h2>
+              <div className={styles.storyBody}>
+                <p>Before a single line of FieldAlpha existed, I was answering calls, dispatching Peter, Maxim, and Ruvim, and figuring out how to actually run an appliance repair company day to day.</p>
+                <p>Fix Flow isn't just a business — it's the reason everything I build is grounded. No hypothetical workflows. Real technicians, real scheduling pressure, real customers who need their fridge fixed today.</p>
+                <p>Co-founding and co-running it taught me more about product than any course ever could.</p>
+              </div>
+              <div className={styles.tags}>
+                {["Operations","Field service","Team management","Co-founded"].map(t => (
+                  <span key={t} className={styles.tag}>{t}</span>
+                ))}
+              </div>
+            </div>
+            <div className={styles.revealLeft}>
+              <div className={styles.visFrame}>
+                <div className={styles.visPlaceholder}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c0bdb7" strokeWidth="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                  <div className={styles.visPlaceholderLabel}>Team or job photo<br/><span>public/images/fixflow-hero.jpg</span></div>
                 </div>
-                <div className="impact-box">
-                  <div className="impact-num serif">Live</div>
-                  <div className="impact-label">Operating today</div>
-                </div>
-                <div className="impact-box">
-                  <div className="impact-num serif">Real</div>
-                  <div className="impact-label">Testbed for software</div>
-                </div>
-              </div>
-            </div>
-            <div className="detail-facts">
-              <div className="fact">
-                <div className="fact-label">Role</div>
-                <div className="fact-value">Founder & Operator</div>
-              </div>
-              <div className="fact">
-                <div className="fact-label">Team</div>
-                <div className="fact-value">Peter (Lead), Maxim, Ruvim</div>
-              </div>
-              <div className="fact">
-                <div className="fact-label">Why it matters</div>
-                <div
-                  className="fact-value"
-                  style={{
-                    fontSize: "14px",
-                    lineHeight: 1.7,
-                    color: "#5a5a5a",
-                  }}
-                >
-                  Every feature in FieldAlpha is validated here first. Real
-                  scheduling conflicts, real invoice edge cases, real customer
-                  expectations — no simulations.
+                <div className={styles.visBadge}>
+                  <div className={styles.visBadgeNum}>3+</div>
+                  <div className={styles.visBadgeLabel}>Active technicians</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div
-          className={`company-detail ${activeCompany === "fa" ? "open" : ""}`}
-        >
-          <div className="detail-inner">
-            <div>
-              <div className="detail-img-slot">
-                <img
-                  src="/images/fieldalpha-app.jpg"
-                  alt="FieldAlpha"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "10px",
-                  }}
-                  onError={(e) => (e.target.style.display = "none")}
-                />
-              </div>
-              <div className="impact-row" style={{ marginTop: "1rem" }}>
-                <div className="impact-box">
-                  <div className="impact-num serif">Live</div>
-                  <div className="impact-label">Production users</div>
+          {/* IMOW bridge */}
+          <div className={styles.bridge}>
+            <div className={`${styles.chapterLabel} ${styles.reveal}`}>The solution I had to build</div>
+            <div className={styles.storyGrid}>
+              <div className={styles.revealLeft}>
+                <div className={styles.storyEyebrow}>
+                  <span className={`${styles.eyDot} ${styles.dotImow}`}></span>
+                  Built solo · IMOW Devops
                 </div>
-                <div className="impact-box">
-                  <div className="impact-num serif">AI</div>
-                  <div className="impact-label">Gemini job intake</div>
+                <h2 className={`${styles.storyTitle} ${styles.storyTitleSm}`}>
+                  Two companies,<br />one <em>platform</em>
+                </h2>
+                <div className={styles.storyBody}>
+                  <p>Juggling two companies across Slack, Notion, and spreadsheets was burning time and context. I built IMOW Devops as my own solution — entirely designed and developed by me.</p>
+                  <p>Dual-workspace (indigo for FieldAlpha, orange for Fix Flow). Discord-style messaging, task boards, wiki, calendar, deliverable approvals with sign-off workflows, and a built-in Claude AI assistant. Fully real-time.</p>
                 </div>
-                <div className="impact-box">
-                  <div className="impact-num serif">Full</div>
-                  <div className="impact-label">Stack built solo</div>
+                <div className={styles.tags}>
+                  {["Next.js 16","Supabase Realtime","Claude AI","Tailwind","PWA"].map(t => (
+                    <span key={t} className={styles.tag}>{t}</span>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="detail-facts">
-              <div className="fact">
-                <div className="fact-label">Role</div>
-                <div className="fact-value">Founder & Developer</div>
-              </div>
-              <div className="fact">
-                <div className="fact-label">Stack</div>
-                <div className="fact-value">
-                  <div className="stack-pills">
-                    <span className="spill">Next.js</span>
-                    <span className="spill">Supabase</span>
-                    <span className="spill">TypeScript</span>
-                    <span className="spill">Gemini AI</span>
-                    <span className="spill">Twilio</span>
-                    <span className="spill">SendGrid</span>
+              <div className={styles.revealRight}>
+                <div className={styles.visFrame}>
+                  <div className={styles.visPlaceholder}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c0bdb7" strokeWidth="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                    <div className={styles.visPlaceholderLabel}>IMOW dashboard<br/><span>public/images/imow-hero.jpg</span></div>
+                  </div>
+                  <div className={styles.visBadge}>
+                    <div className={styles.visBadgeNum}>13</div>
+                    <div className={styles.visBadgeLabel}>DB tables · Realtime</div>
                   </div>
                 </div>
-              </div>
-              <div className="fact">
-                <div className="fact-label">What it does</div>
-                <div
-                  className="fact-value"
-                  style={{
-                    fontSize: "14px",
-                    lineHeight: 1.7,
-                    color: "#5a5a5a",
-                  }}
-                >
-                  AI-powered job intake, real-time dispatch, scheduling,
-                  invoicing, customer management, and SMS notifications —
-                  multi-tenant with row-level security.
-                </div>
-              </div>
-              <div className="fact">
-                <div className="fact-label">Live at</div>
-                <div className="fact-value">
-                  <a
-                    href="https://fieldalpha.dev"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      color: "#0f0f0f",
-                      fontWeight: 500,
-                      textDecoration: "underline",
-                      textUnderlineOffset: "3px",
-                    }}
-                  >
-                    fieldalpha.dev ↗
-                  </a>
+                <div className={`${styles.gallery} ${styles.g2} ${styles.reveal}`} style={{marginTop:"12px"}}>
+                  <div className={styles.gCell}><div className={styles.gHint}>Messaging<br/><span>public/images/imow-chat.jpg</span></div></div>
+                  <div className={styles.gCell}><div className={styles.gHint}>Tasks<br/><span>public/images/imow-tasks.jpg</span></div></div>
                 </div>
               </div>
             </div>
@@ -304,259 +258,34 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="divider"></div>
-
-      <section className="section">
-        <div className="section-label">Project journey</div>
-        <p
-          style={{
-            fontSize: "15px",
-            color: "#5a5a5a",
-            marginBottom: "2.5rem",
-            lineHeight: 1.8,
-          }}
-        >
-          Every project tells a story. Click to expand the full picture — what I
-          built, why, and what it produced.
-        </p>
-
-        <div className="journey-list">
-          <div className="journey-line"></div>
-
-          <div
-            className={`journey-item ${activeJourney === "imow" ? "open" : ""}`}
-            onClick={() => toggleJourney("imow")}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && toggleJourney("imow")}
-          >
-            <div className="journey-dot">01</div>
-            <div>
-              <div className="journey-header">
-                <div>
-                  <div className="journey-title">
-                    IMOW Devops — internal ops platform
-                  </div>
-                  <div className="journey-sub">
-                    Full internal workspace for both companies: tasks, messaging,
-                    wiki, calendar, AI assistant
-                  </div>
-                </div>
-                <span className="arrow-icon">↓</span>
+      {/* CH3: JINX */}
+      <section className={`${styles.chapter} ${styles.chapterTeal}`} id="jinx">
+        <div className={styles.chapterInner}>
+          <div className={`${styles.chapterLabel} ${styles.reveal}`}>Chapter 03 — The Assistant</div>
+          <div className={`${styles.storyGrid} ${styles.storyGridFlip}`}>
+            <div className={styles.revealRight}>
+              <div className={styles.storyEyebrow}>
+                <span className={`${styles.eyDot} ${styles.dotJinx}`}></span>
+                Co-built · Personal AI
               </div>
-              <div className="journey-tags">
-                <span className="spill">Next.js 16</span>
-                <span className="spill">Supabase Realtime</span>
-                <span className="spill">Claude AI</span>
-                <span className="spill">PWA</span>
+              <h2 className={styles.storyTitle}>
+                Jinx — an AI that<br /><em>knows you</em>
+              </h2>
+              <div className={styles.storyBody}>
+                <p>What if your AI assistant actually knew your context — your companies, your priorities, your communication style — instead of starting cold every time?</p>
+                <p>Jinx is a personal assistant layer co-built to plug into the real work I do every day. Part of a longer exploration into what ambient, context-aware AI tooling looks like for small business operators who can't afford an ops team.</p>
               </div>
-              <div className="journey-expand">
-                <div className="expand-inner">
-                  <div className="expand-grid">
-                    <div className="expand-img">
-                      <img
-                        src="/images/imow-dashboard.jpg"
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                        onError={(e) => (e.target.style.display = "none")}
-                      />
-                    </div>
-                    <div className="expand-img">
-                      <img
-                        src="/images/imow-messaging.jpg"
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                        onError={(e) => (e.target.style.display = "none")}
-                      />
-                    </div>
-                  </div>
-                  <p className="expand-story">
-                    Running two companies across Slack, Notion, and spreadsheets
-                    was chaos. I built IMOW as one unified place — dual-workspace
-                    (indigo for Field Alpha, orange for Fix Flow), real-time
-                    messaging, deliverable approvals, and a built-in Claude AI
-                    assistant. 13 Supabase tables, role-based access, PWA-ready.
-                  </p>
-                  <div className="impact-row">
-                    <div className="impact-box">
-                      <div className="impact-num serif">13</div>
-                      <div className="impact-label">DB tables</div>
-                    </div>
-                    <div className="impact-box">
-                      <div className="impact-num serif">2</div>
-                      <div className="impact-label">Workspaces</div>
-                    </div>
-                    <div className="impact-box">
-                      <div className="impact-num serif">RT</div>
-                      <div className="impact-label">Realtime sync</div>
-                    </div>
-                  </div>
-                </div>
+              <div className={styles.tags}>
+                {["Claude API","AI","Context-aware","Co-built"].map(t => (
+                  <span key={t} className={`${styles.tag} ${styles.tagTeal}`}>{t}</span>
+                ))}
               </div>
             </div>
-          </div>
-
-          <div
-            className={`journey-item ${activeJourney === "secureco" ? "open" : ""}`}
-            onClick={() => toggleJourney("secureco")}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && toggleJourney("secureco")}
-          >
-            <div className="journey-dot">02</div>
-            <div>
-              <div className="journey-header">
-                <div>
-                  <div className="journey-title">
-                    SecureCO: Nothing to Hide
-                  </div>
-                  <div className="journey-sub">
-                    Branching visual novel exploring data privacy ethics — built
-                    under deadline in RenPy
-                  </div>
-                </div>
-                <span className="arrow-icon">↓</span>
-              </div>
-              <div className="journey-tags">
-                <span className="spill">RenPy</span>
-                <span className="spill">Python</span>
-                <span className="spill">Narrative Design</span>
-                <span className="spill">INFO 351</span>
-              </div>
-              <div className="journey-expand">
-                <div className="expand-inner">
-                  <div className="expand-grid">
-                    <div className="expand-img">
-                      <img
-                        src="/images/secureco-scene.jpg"
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                        onError={(e) => (e.target.style.display = "none")}
-                      />
-                    </div>
-                    <div className="expand-img">
-                      <img
-                        src="/images/secureco-branch.jpg"
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                        onError={(e) => (e.target.style.display = "none")}
-                      />
-                    </div>
-                  </div>
-                  <p className="expand-story">
-                    A visual novel that forces players to make real choices about
-                    data sharing, surveillance, and consent — each decision leads
-                    to different narrative outcomes. Built to make privacy ethics
-                    feel personal, not abstract. Submitted under a tight deadline
-                    with bug fixes and narrative expansions.
-                  </p>
-                  <div className="impact-row">
-                    <div className="impact-box">
-                      <div className="impact-num serif">Multi</div>
-                      <div className="impact-label">Branching endings</div>
-                    </div>
-                    <div className="impact-box">
-                      <div className="impact-num serif">INFO</div>
-                      <div className="impact-label">351 project</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={`journey-item ${activeJourney === "ml" ? "open" : ""}`}
-            onClick={() => toggleJourney("ml")}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && toggleJourney("ml")}
-          >
-            <div className="journey-dot">03</div>
-            <div>
-              <div className="journey-header">
-                <div>
-                  <div className="journey-title">Art Auction ML Models</div>
-                  <div className="journey-sub">
-                    Regression + classification on a Kaggle art auction dataset
-                  </div>
-                </div>
-                <span className="arrow-icon">↓</span>
-              </div>
-              <div className="journey-tags">
-                <span className="spill">Python</span>
-                <span className="spill">Scikit-learn</span>
-                <span className="spill">Regression</span>
-                <span className="spill">Classification</span>
-                <span className="spill">INFO 371</span>
-              </div>
-              <div className="journey-expand">
-                <div className="expand-inner">
-                  <div className="expand-grid">
-                    <div className="expand-img">
-                      <img
-                        src="/images/ml-model.jpg"
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                        onError={(e) => (e.target.style.display = "none")}
-                      />
-                    </div>
-                    <div className="expand-img">
-                      <img
-                        src="/images/ml-features.jpg"
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "8px",
-                        }}
-                        onError={(e) => (e.target.style.display = "none")}
-                      />
-                    </div>
-                  </div>
-                  <p className="expand-story">
-                    Two ML proposals on a Kaggle art auction dataset: a regression
-                    model predicting sale price from artist, medium, dimensions,
-                    and provenance — and a classification model predicting
-                    museum acquisition likelihood. Feature engineering,
-                    cross-validation, held-out test evaluation.
-                  </p>
-                  <div className="impact-row">
-                    <div className="impact-box">
-                      <div className="impact-num serif">2</div>
-                      <div className="impact-label">ML models</div>
-                    </div>
-                    <div className="impact-box">
-                      <div className="impact-num serif">Kaggle</div>
-                      <div className="impact-label">Real dataset</div>
-                    </div>
-                  </div>
+            <div className={styles.revealLeft}>
+              <div className={`${styles.visFrame} ${styles.visFrameTeal}`}>
+                <div className={styles.visPlaceholder}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f766e" strokeWidth="1.2" opacity=".35"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                  <div className={styles.visPlaceholderLabel}>Jinx interface<br/><span>public/images/jinx-hero.jpg</span></div>
                 </div>
               </div>
             </div>
@@ -564,20 +293,64 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="divider"></div>
-
-      <section className="section" style={{ paddingBottom: "6rem" }}>
-        <div className="section-label">Education</div>
-        <div className="edu-strip">
-          <div>
-            <div className="serif edu-school">University of Washington</div>
-            <div className="edu-deg">
-              B.S. Informatics — Information Systems · INFO 490, INFO 371, COM 468
+      {/* CH4: ORIGIN */}
+      <section className={`${styles.chapter} ${styles.chapterBg2}`} id="origin">
+        <div className={styles.chapterInner}>
+          <div className={`${styles.chapterLabel} ${styles.reveal}`}>Chapter 04 — The Origin</div>
+          <div className={styles.storyGrid}>
+            <div className={styles.revealLeft}>
+              <h2 className={styles.storyTitle}>
+                Before code,<br />there was <em>the door.</em>
+              </h2>
+              <div className={styles.storyBody}>
+                <p>At 18, I was in Connecticut knocking on doors — summer D2D sales. You learn to handle rejection before 9am, read people in seconds, and make someone believe something is worth paying for while standing on their porch.</p>
+                <p>Then B2B — selling tires and wheels to businesses. Longer cycles, relationship-based, higher stakes. The pattern was always the same: find the real pain, earn the trust, deliver.</p>
+                <p>That thread runs through everything I build. I don't just ship features — I understand why they need to exist, and who has to pay for them.</p>
+              </div>
+              <div className={styles.musicStrip}>
+                <div className={styles.musicStripLabel}>Also</div>
+                <div className={styles.musicStripText}>I produce music. There's something about arranging sounds that feels like the same impulse as designing systems — find the structure, let things breathe, make something that hits. It keeps me honest about what creativity actually is.</div>
+              </div>
+            </div>
+            <div className={styles.revealRight}>
+              <div className={styles.tl}>
+                <div className={styles.tlLine}></div>
+                {[
+                  ["Age 18–19 · Connecticut","Door-to-door sales.","Summer programs, hundreds of doors a week. Built the foundation for reading people, handling objections, and closing without a slide deck."],
+                  ["B2B · Tires & Wheels","Business-to-business selling.","Commercial accounts, relationship-driven, long cycles. Learned how businesses actually decide what to buy — and why they don't."],
+                  ["Co-founding","Fix Flow Appliance.","Applied the customer empathy, operations instinct, and sales drive to build and run a real business from scratch with a partner."],
+                  ["Now · UW Informatics","Building FieldAlpha.","The sales background means I build for buyers. Every feature has a real conversation behind it — someone's actual problem, not an assumption."],
+                ].map(([year, bold, text], i) => (
+                  <div key={i} className={`${styles.tlItem} ${styles["d"+(i+1)]}`}>
+                    <div className={styles.tlDot}></div>
+                    <div className={styles.tlYear}>{year}</div>
+                    <div className={styles.tlText}><strong>{bold}</strong> {text}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="serif edu-year">2026</div>
         </div>
       </section>
-    </div>
+
+      {/* CONTACT */}
+      <section className={styles.contactWrap} id="contact">
+        <div className={styles.contactInner}>
+          <div className={`${styles.chapterLabelDark} ${styles.reveal}`}>Let's talk</div>
+          <h2 className={`${styles.contactTitle} ${styles.reveal}`}>
+            Build something<br /><em>together.</em>
+          </h2>
+          <p className={`${styles.contactSub} ${styles.reveal}`}>
+            Investor, co-founder, employer, or someone who just wants to talk about building things — I'm always up for a real conversation.
+          </p>
+          <div className={`${styles.cLinks} ${styles.reveal}`}>
+            <a href="mailto:ales@fieldalpha.dev" className={`${styles.cBtn} ${styles.cBtnPrimary}`}>ales@fieldalpha.dev</a>
+            <a href="https://linkedin.com/in/alexis-lucatero" className={styles.cBtn} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/printlnalex" className={styles.cBtn} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href="https://fieldalpha.dev" className={styles.cBtn} target="_blank" rel="noreferrer">FieldAlpha ↗</a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
