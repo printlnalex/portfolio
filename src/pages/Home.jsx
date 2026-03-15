@@ -149,22 +149,19 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.revealRight}>
-              <div className={`${styles.visFrame} ${styles.visFrameDark}`}>
-                <div className={styles.visPlaceholder}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.18)" strokeWidth="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                  <div className={styles.visPlaceholderLabel}>App screenshot<br/><span>public/images/fa-hero.jpg</span></div>
+              <a
+                href="https://fieldalpha.dev"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.siteLink}
+              >
+                <div className={styles.siteLinkInner}>
+                  <span className={styles.siteLinkDomain}>fieldalpha.dev</span>
+                  <span className={styles.siteLinkHint}>AI-powered field service management</span>
+                  <span className={styles.siteLinkArrow}>Visit site ↗</span>
                 </div>
-                <div className={styles.visBadge}>
-                  <div className={styles.visBadgeNum}>Live</div>
-                  <div className={styles.visBadgeLabel}>Production users today</div>
-                </div>
-              </div>
+              </a>
             </div>
-          </div>
-          <div className={`${styles.gallery} ${styles.g3} ${styles.reveal}`}>
-            {["Dashboard · public/images/fa-dashboard.jpg","Dispatch · public/images/fa-dispatch.jpg","Calendar · public/images/fa-calendar.jpg"].map((h,i) => (
-              <div key={i} className={`${styles.gCell} ${styles.gCellDark}`}><div className={styles.gHintDark}>{h.split(" · ")[0]}<br/><span>{h.split(" · ")[1]}</span></div></div>
-            ))}
           </div>
           <div className={`${styles.impact} ${styles.impactDark} ${styles.reveal}`}>
             {[["AI","Gemini job intake"],["RT","Real-time dispatch"],["Multi","Tenant architecture"]].map(([n,l]) => (
@@ -202,16 +199,18 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.revealLeft}>
-              <div className={styles.visFrame}>
-                <div className={styles.visPlaceholder}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c0bdb7" strokeWidth="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                  <div className={styles.visPlaceholderLabel}>Team or job photo<br/><span>public/images/fixflow-hero.jpg</span></div>
+              <a
+                href="https://www.fixflowappliance.com/"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles.siteLink} ${styles.siteLinkWarm}`}
+              >
+                <div className={styles.siteLinkInner}>
+                  <span className={styles.siteLinkDomain}>fixflowappliance.com</span>
+                  <span className={styles.siteLinkHint}>Professional appliance repair · Texas & Washington</span>
+                  <span className={styles.siteLinkArrow}>Visit site ↗</span>
                 </div>
-                <div className={styles.visBadge}>
-                  <div className={styles.visBadgeNum}>3+</div>
-                  <div className={styles.visBadgeLabel}>Active technicians</div>
-                </div>
-              </div>
+              </a>
             </div>
           </div>
 
@@ -238,20 +237,19 @@ export default function Home() {
                 </div>
               </div>
               <div className={styles.revealRight}>
-                <div className={styles.visFrame}>
-                  <div className={styles.visPlaceholder}>
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c0bdb7" strokeWidth="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                    <div className={styles.visPlaceholderLabel}>IMOW dashboard<br/><span>public/images/imow-hero.jpg</span></div>
+                <a
+                  href="https://imow.dev/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${styles.siteLink} ${styles.siteLinkImow}`}
+                >
+                  <div className={styles.siteLinkInner}>
+                    <span className={styles.siteLinkDomain}>imow.dev</span>
+                    <span className={styles.siteLinkHint}>Your company. Organized.</span>
+                    <span className={styles.siteLinkMeta}>13 tables · Realtime</span>
+                    <span className={styles.siteLinkArrow}>Visit site ↗</span>
                   </div>
-                  <div className={styles.visBadge}>
-                    <div className={styles.visBadgeNum}>13</div>
-                    <div className={styles.visBadgeLabel}>DB tables · Realtime</div>
-                  </div>
-                </div>
-                <div className={`${styles.gallery} ${styles.g2} ${styles.reveal}`} style={{marginTop:"12px"}}>
-                  <div className={styles.gCell}><div className={styles.gHint}>Messaging<br/><span>public/images/imow-chat.jpg</span></div></div>
-                  <div className={styles.gCell}><div className={styles.gHint}>Tasks<br/><span>public/images/imow-tasks.jpg</span></div></div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -262,8 +260,8 @@ export default function Home() {
       <section className={`${styles.chapter} ${styles.chapterTeal}`} id="jinx">
         <div className={styles.chapterInner}>
           <div className={`${styles.chapterLabel} ${styles.reveal}`}>Chapter 03 — The Assistant</div>
-          <div className={`${styles.storyGrid} ${styles.storyGridFlip}`}>
-            <div className={styles.revealRight}>
+          <div className={styles.storyGridSingle}>
+            <div className={styles.revealLeft}>
               <div className={styles.storyEyebrow}>
                 <span className={`${styles.eyDot} ${styles.dotJinx}`}></span>
                 Co-built · Personal AI
@@ -279,14 +277,6 @@ export default function Home() {
                 {["Claude API","AI","Context-aware","Co-built"].map(t => (
                   <span key={t} className={`${styles.tag} ${styles.tagTeal}`}>{t}</span>
                 ))}
-              </div>
-            </div>
-            <div className={styles.revealLeft}>
-              <div className={`${styles.visFrame} ${styles.visFrameTeal}`}>
-                <div className={styles.visPlaceholder}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f766e" strokeWidth="1.2" opacity=".35"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                  <div className={styles.visPlaceholderLabel}>Jinx interface<br/><span>public/images/jinx-hero.jpg</span></div>
-                </div>
               </div>
             </div>
           </div>
